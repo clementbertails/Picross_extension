@@ -28,7 +28,7 @@ function createLayer() {
 
     let grid = document.getElementById('puzzle').querySelector('tbody');
     let grid_nbrows = parseInt(localStorage.getItem('picross.dimensionHeight').replace('"', ''));
-    let grid_nbcols = parseInt(localStorage.getItem('picross.dimensionHeight').replace('"', ''));
+    let grid_nbcols = parseInt(localStorage.getItem('picross.dimensionWidth').replace('"', ''));
 
     while(grid.rows.length > grid_nbrows + 1) {
         grid.removeChild(grid.lastChild);
@@ -47,12 +47,10 @@ function createLayer() {
         let cell = document.createElement('td');
         cell.className = 'key';
         cell.innerHTML = key_left_values[i];
-      
+        cell.style = "text-align: left";
+        cell.style = "vertical-align: middle";
         row.appendChild(cell);
     }
-
-    console.log("left value = ", key_left_values);
-    console.log("top value = ", key_top_values);
 
     let new_row = grid.appendChild(document.createElement('tr'));
     new_row.appendChild(document.createElement('td')).className = 'key';
@@ -60,6 +58,8 @@ function createLayer() {
         cell = new_row.appendChild(document.createElement('td'));
         cell.className = 'key';
         cell.innerHTML = key_top_values[i];
+        cell.style = "text-align: center";
+        cell.style = 'paddingTop = "5px"';
     }
 }
 
@@ -67,6 +67,7 @@ document.onload = createLayer();
 
 const targets = [
     "click #new",
+    "click #customGame",
     "change #dark",
     "change #easy",
     "mousedown",
@@ -75,7 +76,7 @@ const targets = [
     "mouseup",
     "touchstart td.cell",
     "touchmove td.cell",
-    "touchend td.cell",
+    "touchend td.cell"
 ];
 
 const defaultTarget = document.body;
@@ -86,3 +87,9 @@ targets.forEach(target => {
 
     elements.forEach(element => element.addEventListener(event, createLayer))
 });
+
+const containerElements = document.getElementsByClassName('container');
+for (let i = 0; i < containerElements.length; i++) {
+  const container = containerElements[i];
+    container.style.overflow = "visible";
+}
