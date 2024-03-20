@@ -1,0 +1,16 @@
+{
+    "manifest_version": 3,
+    "name": "Picross Helper",
+    "version": "1.0",
+    "description": "This extension helps you solve Picross puzzles by calculating the value of each lines and highlitings rows and columns.",
+    "author": "Clément Bertails <clement.bertails@gmail.com>",
+    "icons": {
+        "256": "assets/icons/256picross.png"
+    },
+    "content_scripts": [
+        {
+          "matches": ["https://liouh.com/picross/*"],
+          "js": ["js/layer.js"]
+        }
+      ]
+}
