@@ -34,9 +34,10 @@ function createLayer() {
         grid.removeChild(grid.lastChild);
     }
 
-    while(grid.rows[1].length > grid_nbcols + 1) {
+    while(grid.rows[1].childElementCount > grid_nbcols + 1) {
         for (let i = 0; i < grid_nbrows; i++) {
-            grid.rows[i + 1].removeChild(row.lastChild);
+            let row = grid.rows[i + 1]
+            row.removeChild(row.lastChild);
         }
     }
 
@@ -61,6 +62,8 @@ function createLayer() {
         cell.innerHTML = key_top_values[i];
     }
 }
+
+document.onload = createLayer();
 
 const targets = [
     "click #new",
