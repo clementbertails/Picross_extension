@@ -32,6 +32,7 @@ function displayRightLayer(key_left_values) {
 
     let grid = document.getElementById('puzzle').querySelector('tbody');
     let grid_nbrows = parseInt(localStorage.getItem('picross.dimensionHeight').replace('"', ''));
+    let grid_nbcols = parseInt(localStorage.getItem('picross.dimensionWidth').replace('"', ''));
 
     for (let i = 0; i < grid_nbrows; i++) {
         let row = grid.rows[i + 1];
@@ -39,9 +40,9 @@ function displayRightLayer(key_left_values) {
         let cell = document.createElement('td');
         cell.className = 'key';
         cell.innerHTML = key_left_values[i];
-        if (key_left_values[i] < 17 ) {
+        if (key_left_values[i] < grid_nbcols - 3) {
             cell.style = "vertical-align: middle; padding-top: 2px; padding-bottom: 2px; padding-left: 2px; color: red";
-        } else if (key_left_values[i] < 19) {
+        } else if (key_left_values[i] < grid_nbcols - 1) {
             cell.style = "vertical-align: middle; padding-top: 2px; padding-bottom: 2px; padding-left: 2px; color: yellow";
         } else {
             cell.style = "vertical-align: middle; padding-top: 2px; padding-bottom: 2px; padding-left: 2px; color: green";
@@ -54,6 +55,7 @@ function displayBottomLayer(key_top_values) {
 
     let grid = document.getElementById('puzzle').querySelector('tbody');
     let grid_nbcols = parseInt(localStorage.getItem('picross.dimensionWidth').replace('"', ''));
+    let grid_nbrows = parseInt(localStorage.getItem('picross.dimensionHeight').replace('"', ''));
 
     let new_row = grid.appendChild(document.createElement('tr'));
     new_row.appendChild(document.createElement('td')).className = 'key';
@@ -61,9 +63,9 @@ function displayBottomLayer(key_top_values) {
         let cell = document.createElement('td');
         cell.className = 'key';
         cell.innerHTML = key_top_values[i];
-        if (key_top_values[i] < 17 ) {
+        if (key_top_values[i] < grid_nbrows - 3 ) {
             cell.style = "text-align: center; padding-left: 2px; padding-right: 2px; padding-top: 2px; color: red";
-        } else if (key_top_values[i] < 19) {
+        } else if (key_top_values[i] < grid_nbrows - 1) {
             cell.style = "text-align: center; padding-left: 2px; padding-right: 2px; padding-top: 2px; color: yellow";
         } else {
             cell.style = "text-align: center; padding-left: 2px; padding-right: 2px; padding-top: 2px; color: green";
