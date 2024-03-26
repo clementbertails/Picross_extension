@@ -111,45 +111,60 @@ function layer_solution() {
 
 }
 
-document.onload = createLayers();
-
-const targets = [
-    "click #new",
-    "click #customGame",
-    "change #dark",
-    "change #easy",
-    "mousedown",
-    "mouseover td.cell",
-    "mouseout td.cell",
-    "mouseup",
-    "touchstart td.cell",
-    "touchmove td.cell",
-    "touchend td.cell"
-];
-
-const defaultTarget = document.body;
-
-targets.forEach(target => {
-    const [event, subTarget] = target.split(" ");
-    const elements = subTarget ? defaultTarget.querySelectorAll(subTarget) : [ defaultTarget ];
-
-    elements.forEach(element => {
-        if (element == "#new" || element == "#customGame") {
-            element.addEventListener(event, () => {
-                console.log('event ' + event + ' on ' + element);
-                createLayers();
-            });
-        } else {
-            element.addEventListener(event, () => {
-                console.log('event ' + event + ' on ' + element);
-                createLayers();
-            });
-        }
+function create_eventsListeners() {
+    const targets = [
+        "click #new",
+        "click #customGame",
+        "change #dark",
+        "change #easy",
+        "mousedown",
+        "mouseover td.cell",
+        "mouseout td.cell",
+        "mouseup",
+        "touchstart td.cell",
+        "touchmove td.cell",
+        "touchend td.cell"
+    ];
+    
+    const defaultTarget = document.body;
+    
+    targets.forEach(target => {
+        const [event, subTarget] = target.split(" ");
+        const elements = subTarget ? defaultTarget.querySelectorAll(subTarget) : [ defaultTarget ];
+    
+        elements.forEach(element => {
+            if (element == "#new" || element == "#customGame") {
+                element.addEventListener(event, () => {
+                    createLayers();
+                });
+            } else {
+                element.addEventListener(event, () => {
+                    createLayers();
+                });
+            }
+        });
     });
-});
+}
 
+document.onload = createLayers();
+    
+create_eventsListeners();
+
+// remove overflow hidden
 const containerElements = document.getElementsByClassName('container');
 for (let i = 0; i < containerElements.length; i++) {
-  const container = containerElements[i];
+    const container = containerElements[i];
     container.style.overflow = "visible";
 }
+
+// Create the solution button
+const solution = document.createElement('button');
+solution.id = "solution";
+solution.innerHTML = "Solution";
+solution.addEventListener('click', layer_solution);
+
+const controlSolution = document.createElement('div');
+controlSolution.className = "control-group";
+controlSolution.appendChild(solution);
+
+document.getElementsByClassName('controls')[0].appendChild(controlSolution);
