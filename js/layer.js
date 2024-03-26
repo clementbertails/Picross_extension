@@ -39,7 +39,13 @@ function displayRightLayer(key_left_values) {
         let cell = document.createElement('td');
         cell.className = 'key';
         cell.innerHTML = key_left_values[i];
-        cell.style = "vertical-align: middle; padding-top: 2px; padding-bottom: 2px; padding-left: 2px";
+        if (key_left_values[i] < 17 ) {
+            cell.style = "vertical-align: middle; padding-top: 2px; padding-bottom: 2px; padding-left: 2px; color: red";
+        } else if (key_left_values[i] < 19) {
+            cell.style = "vertical-align: middle; padding-top: 2px; padding-bottom: 2px; padding-left: 2px; color: yellow";
+        } else {
+            cell.style = "vertical-align: middle; padding-top: 2px; padding-bottom: 2px; padding-left: 2px; color: green";
+        }
         row.appendChild(cell);
     }
 }
@@ -55,7 +61,13 @@ function displayBottomLayer(key_top_values) {
         let cell = document.createElement('td');
         cell.className = 'key';
         cell.innerHTML = key_top_values[i];
-        cell.style = "text-align: center; padding-left: 2px; padding-right: 2px; padding-top: 2px";
+        if (key_top_values[i] < 17 ) {
+            cell.style = "text-align: center; padding-left: 2px; padding-right: 2px; padding-top: 2px; color: red";
+        } else if (key_top_values[i] < 19) {
+            cell.style = "text-align: center; padding-left: 2px; padding-right: 2px; padding-top: 2px; color: yellow";
+        } else {
+            cell.style = "text-align: center; padding-left: 2px; padding-right: 2px; padding-top: 2px; color: green";
+        }
         new_row.appendChild(cell);
     }
 }
