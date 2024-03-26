@@ -108,6 +108,19 @@ function createLayers() {
 }
 
 function layer_solution() {
+    let solution = localStorage.getItem('picross.solution');
+    let grid = document.getElementById('puzzle').querySelector('tbody');
+    let grid_nbrows = parseInt(localStorage.getItem('picross.dimensionHeight').replace('"', ''));
+    let grid_nbcols = parseInt(localStorage.getItem('picross.dimensionWidth').replace('"', ''));
+
+    let solution_grid = solution.split("\n");
+    for (let i = 0; i < grid_nbrows; i++) {
+        let row = grid.rows[i + 1];
+        for (let j = 0; j < grid_nbcols; j++) {
+            let cell = row.cells[j + 1];
+            cell.className = solution_grid[i][j] == '1' ? 'cell on' : 'cell off';
+        }
+    }
 
 }
 
