@@ -144,11 +144,13 @@ function create_eventsListeners() {
     targets.forEach(target => {
         const [event, subTarget] = target.split(" ");
         const elements = subTarget ? defaultTarget.querySelectorAll(subTarget) : [ defaultTarget ];
-    
         elements.forEach(element => {
-            if (element == "#new" || element == "#customGame") {
+            if (element.id === "new" || element.id === "customGame") {
                 element.addEventListener(event, () => {
-                    createLayers();
+                    console.log("new game");
+                    setTimeout(() => {
+                        createLayers();
+                    }, 50);
                 });
             } else {
                 element.addEventListener(event, () => {
